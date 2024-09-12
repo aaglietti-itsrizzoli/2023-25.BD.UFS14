@@ -5,6 +5,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-24.04
     steps:
+      - run: ls -la
       - run: python --version
       - uses: actions/setup-python@v5
         with:
