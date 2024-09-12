@@ -17,3 +17,7 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: python --version
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - run: python --version
