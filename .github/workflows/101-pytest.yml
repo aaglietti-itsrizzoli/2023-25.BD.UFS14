@@ -1,0 +1,15 @@
+name: pytest on GitHub Actions 101
+on: [push]
+jobs:
+  pytest:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: ls -la
+      - run: python --version
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.6'
+      - run: python --version
+      - run: pip install -U pytest
+      - run: pytest --version
