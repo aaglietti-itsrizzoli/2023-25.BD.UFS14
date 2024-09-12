@@ -18,5 +18,9 @@ jobs:
       - name: Install requirements for test_jsonschema.py
         run: pip install -r requirements.txt
         working-directory: pytest-101
+      - name: Copy all json schema contract to pytest-jsonschema folder...
+        # pytest plugin support only predefined JSON schemas in the package folder see our README for details
+        run: cp *.contract.out.json /opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/site-packages/pytest_jsonschema/schemas/
+        working-directory: pytest-101
       - run: pytest test_jsonschema.py
         working-directory: pytest-101
