@@ -13,9 +13,10 @@ jobs:
       - run: python --version
       - run: pip install -U pytest
       - run: pytest --version
-      - name: Run tests on pytest-101 folder
-        run: pytest test_sample.py
+      - run: pytest test_sample.py
         working-directory: pytest-101
       - name: Install requirements for test_jsonschema.py
         run: pip install -r requirements.txt
+        working-directory: pytest-101
+      - run: pytest test_jsonschema.py
         working-directory: pytest-101
