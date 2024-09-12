@@ -11,3 +11,4 @@ jobs:
           python-version: '3.12' 
       - run: python --version
       - run: uname -a
+      - run: pytest
