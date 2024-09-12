@@ -16,4 +16,4 @@ def func():
 
 def test_answer(schema_validate_string):
     data_to_be_validated = func()
-    assert schema_validate_string(data=data_to_be_validated, schema_name="./test_jsonschema.contract.out", file_type="json")
+    assert schema_validate_string(data=data_to_be_validated, schema_name="test_jsonschema.contract.out", file_type="json")
