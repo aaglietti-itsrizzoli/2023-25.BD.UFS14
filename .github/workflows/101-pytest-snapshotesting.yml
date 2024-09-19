@@ -1,4 +1,4 @@
-name: pytest-jsonschema on GitHub Actions 101
+name: pytest-snapshottesting on GitHub Actions 101
 on: [push]
 jobs:
   pytest:
