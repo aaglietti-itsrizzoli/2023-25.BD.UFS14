@@ -1,0 +1,19 @@
+name: pytest-jsonschema on GitHub Actions 101
+on: [push]
+jobs:
+  pytest:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: ls -la
+      - run: python --version
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.6'
+      - run: python --version
+      - run: pip install -U pytest
+      - name: Install requirements for test_jsonschema_101.py
+        run: pip install -r requirements.txt
+        working-directory: pytest-101-jsonschema
+      - run: pytest test_jsonschema_101.py
+        working-directory: pytest-101-jsonschema
