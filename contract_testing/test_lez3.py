@@ -35,3 +35,13 @@ def test_jsonschema():
 def test_json_snapshot(snapshot):
     snapshot.snapshot_dir = 'snapshots'
     snapshot.assert_match(str(func(5)),'func_output.txt')
+
+
+frutti = '''frutto,prezzo,colore
+pera,100,blu
+mela,10,rossa
+ananas,1000,giallo'''
+
+def test_json_snapshot_csv(snapshot):
+    snapshot.snapshot_dir = 'snapshots'
+    snapshot.assert_match(frutti,'frutti.csv')
