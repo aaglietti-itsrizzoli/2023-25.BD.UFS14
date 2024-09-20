@@ -31,3 +31,7 @@ def test_answer():
 
 def test_jsonschema():
     assert bool_validate({"name": "bacon","price":40},schema=schema) == True
+
+def test_json_snapshot(snapshot):
+    snapshot.snapshot_dir = 'snapshots'
+    snapshot.assert_match(str(func(5)),'func_output.txt')
