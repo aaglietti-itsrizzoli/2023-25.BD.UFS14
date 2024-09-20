@@ -36,3 +36,9 @@ def validate_wrapper(instance, schema):
     except:
         return False # qui l'errore che dava altrimenti diventa false
 
+
+#test usando snapshot
+def test_function_output_with_snapshot(snapshot):
+    snapshot.snapshot_dir = 'snapshots'
+    pierino = str(func(12))
+    snapshot.assert_match(pierino, 'foo_output.txt')
