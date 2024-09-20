@@ -42,3 +42,15 @@ def test_function_output_with_snapshot(snapshot):
     snapshot.snapshot_dir = 'snapshots'
     pierino = str(func(12))
     snapshot.assert_match(pierino, 'foo_output.txt')
+
+
+a = '''frutti,prezzo,colore,sapore
+pera,100,rossa,buona
+mela,10,blu,squisita
+ananas,23,turchino,piccante
+'''
+
+def test_function_output_with_snapshot(snapshot):
+    snapshot.snapshot_dir = 'snapshots'
+    andrea = a
+    snapshot.assert_match(andrea, 'foo_output.csv')
