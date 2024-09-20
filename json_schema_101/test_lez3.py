@@ -23,7 +23,7 @@ def test_jschema_success():
     validate(instance={"name" : "Eggs", "price" : 34.99}, schema=schema)
 
 def test_validation():
-    assert validate_wrapper(instance={"name" : "Eggs", "price" : 34.99}, schema=schema) == False
+    assert validate_wrapper(instance={"name" : "Eggs", "price" : 34.99}, schema=schema) == True
 
 def test_validation_fail():
     assert validate_wrapper(instance={"name" : "Eggs", "price" : 'Ciao'}, schema=schema) == False
