@@ -23,4 +23,5 @@ jobs:
       - run: python --version
       - run: uname -a
       - run: pip install -U pytest
+      - run: pip install -r requirements.txt
       - run: pytest
