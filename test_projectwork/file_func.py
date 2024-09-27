@@ -57,14 +57,8 @@ def controllo_validita_url(url):
     return url.startswith('http://') or url.startswith('https://')
 
 #Funzione che crea un dizionario con link e nomi
-def filtra_link_univoci(nomi_links):
-    nomi_links_univoci = []
-    visti = set()
-    
+def crea_dizionario(nomi_links):
+    dizionario = {}
     for n_ingr, l_ingr in nomi_links:
-        if (n_ingr, l_ingr) not in visti:
-            nomi_links_univoci.append((n_ingr, l_ingr))
-            visti.add((n_ingr, l_ingr))
-    
-    diz = dict(nomi_links_univoci)
-    return diz
+        dizionario[n_ingr] = l_ingr
+    return dizionario
