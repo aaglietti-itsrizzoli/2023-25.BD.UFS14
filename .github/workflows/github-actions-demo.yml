@@ -14,8 +14,8 @@ jobs:
       - run: python --version
       - run: uname -a
       - run: pip install -U pytest
-      - run: pytest
       # pip freeze stampa cosa hai installato
       - run: pip freeze
       - run: pip install -r requirements.txt
       - run: pip freeze
+      - run: pytest
