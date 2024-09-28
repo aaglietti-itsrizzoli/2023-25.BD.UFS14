@@ -18,4 +18,4 @@ jobs:
       - run: uname -a
       - run: pip install -U pytest
       - run: pip install -r project_work/requirements.pjw.txt
-      - run: pytest
+      - run: pytest project_work
