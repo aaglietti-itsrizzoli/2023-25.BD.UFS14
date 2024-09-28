@@ -2,8 +2,10 @@ import requests
 from bs4 import BeautifulSoup
 import PyPDF2
 import re
+import json
 
-def fetch_ingredient_data(url):
+# Testato con jsonschema
+def fetch_ingredient_data(url, testing = False):
     # Prima richiesta
     response1 = requests.get(url + "FetchCIRReports/")
     response1.raise_for_status()
@@ -15,25 +17,59 @@ def fetch_ingredient_data(url):
     response2.raise_for_status()
     documento2 = response2.json()["results"]
 
-    return documento1 + documento2
+    results = documento1 + documento2
 
-def find_and_extract_report(ingredienti, ingrediente_richiesto, url_base):
-    """Trova l'ingrediente e scarica il report PDF se disponibile."""
-    # Cerca l'ingrediente richiesto
+    if testing:
+        return results[0] if results else None
+    else:
+        """
+        with open("ingredienti.json", "w") as file:
+            json.dump(results[:5], file, indent=4)
+        """
+        
+        return results
+
+
+# Testato con snapshot e assert
+def find(ingredienti, ingrediente_richiesto):
+    """Trova l'ingrediente richiesto e restituisce il suo ID."""
     for record in ingredienti:
         if ingrediente_richiesto == record["pcpc_ingredientname"]:
-            ID_ingrediente = record["pcpc_ingredientid"]
-
-            # Ottieni la pagina dell'ingrediente richiesto
-            response = requests.get(url_base + "cir-ingredient-status-report/?id=" + ID_ingrediente)
-            response.raise_for_status()
-            
-            # Estrarre il link del PDF
-            soup = BeautifulSoup(response.text, "lxml")
-            link = soup.find('table').find('a', href=True, text=lambda t: t and not t.startswith('javascript:alert'))
-            return url_base + link['href'][2:] if link else None
+            return record["pcpc_ingredientid"]
     return None
 
+
+# Testato con assert
+def extract_link_pdf(ID_ingrediente, url_base, html = None):
+
+    if ID_ingrediente is None:
+        return None
+
+    if html is None:
+    
+        response = requests.get(url_base + "cir-ingredient-status-report/?id=" + ID_ingrediente)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.text, "lxml")
+    else:
+        soup = BeautifulSoup(html, "lxml")
+
+    link = soup.find('table').find('a', href=True, string=lambda s: s and not s.startswith('javascript:alert'))
+    extracted_link = url_base + link['href'][2:] if link else None
+
+    return extracted_link
+
+
+# Non da testare perché unisce solo le due funzioni di prima
+def find_and_extract_report(ingredienti, ingrediente_richiesto, url_base):
+    """Trova l'ingrediente e scarica il report PDF se disponibile."""
+    # Trova l'ingrediente richiesto
+    ID_ingrediente = find(ingredienti, ingrediente_richiesto)
+   
+    # Estrai il link del PDF
+    return extract_link_pdf(ID_ingrediente, url_base)
+
+
+# Non da testare perché scarica solo
 def download_and_extract_pdf_text(pdf_url, pdf_path='report.pdf'):
     """Scarica e estrai il contenuto del PDF."""
     response = requests.get(pdf_url)
@@ -46,7 +82,9 @@ def download_and_extract_pdf_text(pdf_url, pdf_path='report.pdf'):
     with open(pdf_path, 'rb') as pdf_file:
         reader = PyPDF2.PdfReader(pdf_file)
         full_text = ''.join([page.extract_text().replace('\n', ' ') for page in reader.pages])
+
     return full_text
+
 
 def trova_valori(testo, indice):
     """Trova i valori di un indice nel testo del report PDF."""

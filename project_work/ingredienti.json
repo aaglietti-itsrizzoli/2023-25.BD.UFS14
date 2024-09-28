@@ -1,0 +1,37 @@
+[
+    {
+        "pcpc_ingredientid": "940af697-52b5-4a3a-90a6-b9db30ef4a7e",
+        "pcpc_ingredientname": "1,10-Decanediol",
+        "pcpc_ciringredientid": "7edbf719-3056-42cd-abfc-cf3c623eaba6",
+        "pcpc_ciringredientname": "1,10-Decanediol",
+        "pcpc_cirreportname": "Safety Assessment of Alkane Diols as Used in Cosmetics"
+    },
+    {
+        "pcpc_ingredientid": "5d55d919-245e-ee11-be6f-00224824e39e",
+        "pcpc_ingredientname": "1,2,4-Trihydroxybenzene",
+        "pcpc_ciringredientid": "7c1140a3-c7c4-4045-b7f7-d051a33a6f8f",
+        "pcpc_ciringredientname": "1,2,4-Trihydroxybenzene",
+        "pcpc_cirreportname": "Final Report: Safety Assessment of 1,2,4-Trihydroxybenzene as Used in Cosmetics"
+    },
+    {
+        "pcpc_ingredientid": "7bf5d549-ac99-4282-a85f-603d8ecb185e",
+        "pcpc_ingredientname": "1,2-Butanediol",
+        "pcpc_ciringredientid": "92f49ba1-f3b7-40dc-88a7-3b16c3c4cb69",
+        "pcpc_ciringredientname": "1,2-Butanediol",
+        "pcpc_cirreportname": "Safety Assessment of 1,2-Glycols as Used in Cosmetics"
+    },
+    {
+        "pcpc_ingredientid": "73f09bf1-26dd-4c2b-96f2-59e4285a3b2b",
+        "pcpc_ingredientname": "1,2-Hexanediol",
+        "pcpc_ciringredientid": "cd6ed68b-5576-407a-81c2-885bc5881503",
+        "pcpc_ciringredientname": "1,2-Hexanediol",
+        "pcpc_cirreportname": "Safety Assessment of 1,2-Glycols as Used in Cosmetics"
+    },
+    {
+        "pcpc_ingredientid": "ed04f7c6-4dde-4fe4-8ece-df05e25feecc",
+        "pcpc_ingredientname": "1,4-Butanediol",
+        "pcpc_ciringredientid": "99bf02da-42cd-4a4c-a55f-17faa755a41e",
+        "pcpc_ciringredientname": "1,4-Butanediol",
+        "pcpc_cirreportname": "Safety Assessment of Alkane Diols as Used in Cosmetics"
+    }
+]
