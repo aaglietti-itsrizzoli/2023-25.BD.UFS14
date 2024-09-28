@@ -7,15 +7,22 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
+      
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - run: python --version
-      - uses: actions/setup-python@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python --version
-      - run: uname -a
-      - run: pip install -U pytest
-      - run: pip install -r project_work/requirements.pjw.txt
-      - run: pytest project_work
+          
+      - name: Install dependencies
+        run: |
+          pip install -U pytest
+          pip install -r project_work/requirements.pjw.txt
+      
+      - name: Run tests
+        run: |
+          cd project_work
+          pytest .
