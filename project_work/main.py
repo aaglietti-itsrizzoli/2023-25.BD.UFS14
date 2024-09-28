@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import PyPDF2
+import pypdf
 import re
 import json
 
@@ -51,10 +51,10 @@ def extract_link_pdf(ID_ingrediente, url_base, html = None):
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "lxml")
     else:
-        soup = BeautifulSoup(html, "lxml")
+        soup = BeautifulSoup(html, "html.parser")
 
     link = soup.find('table').find('a', href=True, string=lambda s: s and not s.startswith('javascript:alert'))
-    extracted_link = url_base + link['href'][2:] if link else None
+    extracted_link = url_base + link['href'][3:] if link else None
 
     return extracted_link
 
@@ -80,7 +80,7 @@ def download_and_extract_pdf_text(pdf_url, pdf_path='report.pdf'):
     
     # Estrarre il testo dal PDF
     with open(pdf_path, 'rb') as pdf_file:
-        reader = PyPDF2.PdfReader(pdf_file)
+        reader = pypdf.PdfReader(pdf_file)
         full_text = ''.join([page.extract_text().replace('\n', ' ') for page in reader.pages])
 
     return full_text

@@ -1,5 +1,7 @@
 from jsonschema import validate
 import json
+import csv
+from io import StringIO
 from main import fetch_ingredient_data, find, extract_link_pdf
 from main import trova_valori
 
@@ -60,10 +62,12 @@ def test_find_ingredient(snapshot):
     with open(str(snapshot.snapshot_dir) + "/ingredienti.json", "r") as file:
         catalogo = json.load(file)
 
-    ingrediente = find(catalogo, "1,10-Decanediol")
+    # Trova l'ID dell'ingrediente richiesto
+    ingrediente_id = find(catalogo, "1,10-Decanediol")
 
-    # Verifica se l'ingrediente è presente nel catalogo
-    assert ingrediente in catalogo, "Ingrediente non presente in ingredienti.json"
+    # Verifica che l'ID dell'ingrediente sia presente nel catalogo
+    assert any(item["pcpc_ingredientid"] == ingrediente_id for item in catalogo), \
+        f"Ingrediente con ID {ingrediente_id} non presente in ingredienti.json"
 
 
 def test_extract_link_pdf(snapshot):
@@ -73,7 +77,7 @@ def test_extract_link_pdf(snapshot):
         html_content = file.read()
 
     link = extract_link_pdf("940af697-52b5-4a3a-90a6-b9db30ef4a7e", url, html_content)
-
+    
     assert link == "https://cir-reports.cir-safety.org/view-attachment/?id=94742a1a-c561-614f-9f89-14ce58abfc0b", "link sbagliato o non trovato"
 
 
@@ -86,6 +90,9 @@ def test_trova_valori(snapshot):
 
     result = trova_valori(text, "NOAEL")
 
-    
+    output = StringIO()
+    csv_writer = csv.writer(output)
+    csv_writer.writerows(result)
+    formatted_result = output.getvalue().replace("\r\n", "\n")
 
-    snapshot.assert_match(str(result), "risultati_noael.csv")
+    snapshot.assert_match(formatted_result, "risultati_noael.csv")
