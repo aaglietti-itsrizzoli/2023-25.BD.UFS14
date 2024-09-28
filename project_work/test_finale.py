@@ -80,7 +80,7 @@ def test_extract_link_pdf():
 
 
 def test_trova_valori(snapshot):
-
+    snapshot.snapshot_dir = "/workspaces/2023-25.BD.UFS14/project_work"
     # Carica il catalogo una volta sola per questo test
     with open("report.txt", "r") as file:
         text = file.read()
