@@ -55,11 +55,10 @@ def test_fetch_ingredient_data():
 
 
 # Test per la ricerca di un ingrediente specifico
-def test_find_ingredient(snapshot):
-    snapshot.snapshot_dir = "/workspaces/2023-25.BD.UFS14/project_work"
+def test_find_ingredient():
 
     # Carica il catalogo una volta sola per questo test
-    with open(str(snapshot.snapshot_dir) + "/ingredienti.json", "r") as file:
+    with open("ingredienti.json", "r") as file:
         catalogo = json.load(file)
 
     # Trova l'ID dell'ingrediente richiesto
@@ -70,10 +69,9 @@ def test_find_ingredient(snapshot):
         f"Ingrediente con ID {ingrediente_id} non presente in ingredienti.json"
 
 
-def test_extract_link_pdf(snapshot):
-    snapshot.snapshot_dir = "/workspaces/2023-25.BD.UFS14/project_work"
+def test_extract_link_pdf():
 
-    with open(str(snapshot.snapshot_dir) + "/tabella_ingrediente.html", "r", encoding="utf-8") as file:
+    with open("tabella_ingrediente.html", "r", encoding="utf-8") as file:
         html_content = file.read()
 
     link = extract_link_pdf("940af697-52b5-4a3a-90a6-b9db30ef4a7e", url, html_content)
@@ -82,10 +80,9 @@ def test_extract_link_pdf(snapshot):
 
 
 def test_trova_valori(snapshot):
-    snapshot.snapshot_dir = "/workspaces/2023-25.BD.UFS14/project_work"
 
     # Carica il catalogo una volta sola per questo test
-    with open(str(snapshot.snapshot_dir) + "/report.txt", "r") as file:
+    with open("report.txt", "r") as file:
         text = file.read()
 
     result = trova_valori(text, "NOAEL")
