@@ -16,7 +16,8 @@
 				"ms-python.python",
 				"ms-toolsai.jupyter",
 				"eamodio.gitlens",
-				"github.vscode-github-actions"
+				"github.vscode-github-actions",
+				"ms-azuretools.vscode-azurefunctions"
 			]
 		}
 	}
