@@ -1,0 +1,5 @@
+[<tr>
+<td>Ingredient</td><td>Status</td><td>Date/Reference</td>
+</tr>, <tr>
+<td>1,2,4-Trihydroxybenzene</td><td><a href="../view-attachment?id=0a0a37f5-bfc1-deeb-a188-2b7ae62f3219">Final Report</a></td><td>June 04, 2024</td>
+</tr>]
